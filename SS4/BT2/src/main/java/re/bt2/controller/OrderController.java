@@ -1,0 +1,70 @@
+package re.bt2.controller;
+
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/v1")
+public class OrderController {
+
+    static class Order {
+
+        private String orderId;
+        private String customerName;
+        private String address;
+        private String productId;
+        private int quantity;
+
+        public Order() {
+        }
+
+        public String getOrderId() {
+            return orderId;
+        }
+
+        public void setOrderId(String orderId) {
+            this.orderId = orderId;
+        }
+
+        public String getCustomerName() {
+            return customerName;
+        }
+
+        public void setCustomerName(String customerName) {
+            this.customerName = customerName;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public String getProductId() {
+            return productId;
+        }
+
+        public void setProductId(String productId) {
+            this.productId = productId;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        public void setQuantity(int quantity) {
+            this.quantity = quantity;
+        }
+    }
+
+    @PostMapping("/orders")
+    public Order createOrder(@RequestBody Order order) {
+
+        order.setOrderId(UUID.randomUUID().toString());
+
+        return order;
+    }
+}
